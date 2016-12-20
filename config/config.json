@@ -1,0 +1,223 @@
+{
+  "colormaps":{
+    "rainbow" : ["magenta", "blue", "cyan", "green", "yellow", "red"],
+    "Rainbow" : [92,93,57,21,27,33,39,45,51,50,49,48,47,46,82,118,154,190,226,220,214,208,202,196],
+    "spectrum" : ["magenta", "blue", "cyan", "white", "green", "yellow", "red"],
+    "Spectrum" : [91,92,56,57,21,27,26,32,31,37,36,35,41,40,41,77,83,84,120,121,157,194,231,254,255,231,230,229,228,227,226,220,214,208,202,196],
+    "scale"  : ["magenta", "blue", "cyan", "white", "green", "yellow", "red"],
+    "Scale"  : [91,92,56,57,21,27,26,32,31,37,36,35,41,40,41,77,83,84,120,121,157,194,231,254,255,231,230,229,228,227,226,220,214,208,202,196],
+    "hash"   : ["magenta", "blue", "cyan", "green", "yellow", "red"],
+    "Hash"   : [92,93,57,21,27,33,39,45,51,50,49,48,47,46,82,118,154,190,226,220,214,208,202,196],
+    "default": ["magenta", "blue", "cyan", "white", "green", "yellow", "red"],
+    "Default": [91,92,56,57,21,27,26,32,31,37,36,35,41,40,41,77,83,84,120,121,157,194,231,254,255,231,230,229,228,227,226,220,214,208,202,196]
+  },
+  "latex": {
+    "config": [
+      ["This is .*TeX.*$", "white", "bold"],
+      ["(LaTeX Warning): (.*) `(.*)' on page [0-9] (.*) on input line [0-9]+.$", "magenta,magenta,white,magenta", "normal,bold,normal"],
+      ["(LaTeX Warning): (.*)", "magenta", "normal,bold"],
+      ["(LaTeX Error): (.*)", "red", "normal,bold"],
+      ["^(.*\\.tex):([0-9]+): (.*)", "white,yellow,red", "normal,normal,bold"],
+      ["on input (line [0-9]+)", "yellow", "normal"],
+      ["^! .*$", "red", "bold"],
+      ["(.*erfull) ([^\\s]+).* in [^\\s]+ at (lines [0-9]+--[0-9]+)", "magenta,magenta,yellow", "normal"],
+      ["\\[^\\s]+\\s", "white", "bold"],
+      ["^l\\.([0-9]+) (.*)", "yellow,tex"],
+      ["^\\s+(.*)", "tex"],
+      ["(Output written on) (.*) \\(([0-9]+ pages), [0-9]+ bytes\\).", "blue,white,blue", "normal,bold,normal"],
+      ["WARNING.*", "magenta", "normal"],
+      ["warning.*", "magenta", "normal"],
+      ["^(I couldn't) (.*)", "red", "normal,bold"],
+      ["(I found) no (.*)", "red"],
+      ["^---(line [0-9]+) of file (.*)", "yellow,white", "normal"]
+    ]
+  },
+  "perm": {
+    "config": [
+      ["^([d-])([rwxs-])([rwxs-])([rwxs-])([rwxs-])([rwxs-])([rwxs-])([rwxs-])([rwxs-])([rwxs-])\\s.*$", "blue,green,green,green,yellow,yellow,yellow,red,red,red", "normal,normal,italic,bold,normal,italic,bold,normal,italic,bold"]
+    ]
+  },
+  "ninja": {
+    "context": {
+      "colormaps": {
+        "Scale": [45, 39, 33, 27, 21, 57, 63, 62, 98, 97, 133, 132, 138, 173, 172, 208, 214, 220, 226, 228, 229, 230, 231, 255]
+      },
+      "scale": [0, 1]
+    },
+    "config": [
+      ["^--.*works", "green"],
+      ["^--.*done", "green"],
+      ["^-- Found.*NO", "red"],
+      ["^-- Found.*", "green"],
+      ["^--.*broken", "red"],
+      ["^-- Coult NOT find.*", "red"],
+      ["^-- Configuring incomplete, errors occurred!", "red"],
+      ["^--.*", "cyan"],
+      ["CMake Error:", "red"],
+      ["CMake Warning", "yellow"],
+      ["^(Scanning dependencies of target)(.*)$", "cyan", "normal,bold"],
+      ["^(Linking .* )(library|executable) (.*/)*(.+(\\.[aso]+)*)$", "blue", "normal,normal,bold"],
+      ["^\\[\\s*[0-9/]+%?\\]\\s(.*Creating.*)$", "cyan", "normal"],
+      ["^\\[\\s*[0-9/]+%?\\]\\s(Built target)(\\s.*)$", "green", "normal,bold"],
+      ["^\\[\\s*[0-9/]+%?\\]\\s(Building \\w* object)\\s+(.*)(\\.dir)(.*/)([-\\w]+).c.*.o$", "cyan,cyan,cyan,Hash,cyan", "normal,normal,normal,normal,bold"],
+      ["^\\[\\s*[0-9/]+%?\\]\\s(Generating)(\\s+.*)$", "cyan", "normal,bold"],
+      ["make\\[[0-9]+\\].*", "yellow"],
+      ["(make: \\*\\*\\* \\[.+\\] )(.* [0-9]+)", "red", "normal,bold"],
+      ["^(\\[\\s*[0-9]+%\\])", "Scale"],
+      ["^\\[[0-9/]+\\]\\s?(Linking .* )(library|executable) (.*/)*(.+(\\.[aso]+)*)$", "blue", "normal,normal,bold"],
+      ["^(\\[[0-9]+/[0-9]+\\])", "Scale"]
+    ]
+  },
+  "ctest": {
+    "config": [
+      ["^\\s*[0-9]+/[0-9]+ Test\\s+#[0-9]+: (.*)\\s+\\.+\\s+(Passed)", "green"],
+      ["^\\s*[0-9]+/[0-9]+ Test\\s+#[0-9]+: (.*)\\s+\\.+(\\*{3}.*)\\s+.*", "red"]
+    ]
+  },
+  "python": {
+    "config": [
+      ["^Traceback .*$", "blue"],
+      ["^\\s{2}(File \")(/*.*?/)*([^/:]+)(\", line) ([0-9]+)(, in) (.*)$", "blue,  none,  white,blue,  yellow,blue", "normal,normal,bold, normal,normal,bold"],
+      ["^([A-Za-z]*Error):*", "red", "bold"],
+      ["^([A-Za-z]*Exception):*", "red", "bold"],
+      ["Error.*['\"](.*)['\"]", "magenta"],
+      ["^\\s{4}.*$", "Python", "monokai"]
+    ]
+  },
+  "clang": {
+    "config": [
+      ["[/\\s]([cg]\\+\\+-*[0-9]*\\.*[0-9]*)", "white", "bold"],
+      ["\\s(\\-D)(\\s*[^\\s]+\\s)", "none,green", "normal,bold"],
+      ["\\s-g\\s", "green", "normal"],
+      ["\\s-O[0-4]*\\s", "green", "normal"],
+      ["\\s-[Wf][^\\s]*", "magenta", "normal"],
+      ["\\s(-I)(/*[^\\s]+/)([^/\\s]+)", "none,blue", "normal,normal,bold"],
+      ["\\s(-L)(/*[^\\s]+/)([^/\\s]+)", "none,cyan", "normal,normal,bold"],
+      ["\\s(-l)([^/\\s]+)", "none,cyan", "normal,bold"],
+      ["\\s-[oc]", "red", "bold"],
+      ["\\s(-+std)=*([^s]+)", "red", "normal,bold"],
+      ["error: ", "red", "bold"],
+      ["fatal error: ", "red", "bold"],
+      ["warning: ", "magenta", "bold"],
+      ["undefined reference to ", "red", "bold"],
+      ["\\[-W.*\\]", "magenta"],
+      ["(/.*?)/([^/:]+): (In .*)[\u2018`]", "blue", "normal,normal,bold"],
+      ["(/.*?)/([^/:]+): (At .*)", "blue", "normal,normal,bold"],
+      ["In file included from", "blue"],
+      ["(/.*?)/([^/:]+):([0-9]+):*([0-9]*)(.*)", "none,white,yellow,none,none", "normal,normal,normal,normal"],
+      ["[\u2018`](.*?)[\u2019']", "Cpp", "monokai"],
+      ["note: ((?!.*([\u2018`]|[\u2019'])).*)$", "Cpp", "monokai"],
+      ["note: ", "green", "normal"]
+    ]
+  },
+  "valgrind": {
+    "config": [
+      ["^(==[0-9]+==\\s{1})(Memcheck|Copyright|Using)(.*)$", "blue", ""],
+      ["^(==[0-9]+==\\s{1})(Warning)(.*)$", "magenta", ""],
+      ["^(==[0-9]+==\\s{1}Command: )(\\S*)(.*)$", "green,white", "normal,bold,normal"],
+      ["^(==[0-9]+==\\s{1})(HEAP SUMMARY:)(.*)$", "green", ""],
+      ["^(==[0-9]+==\\s{1})(All heap blocks were freed)(.*)$", "green", ""],
+      ["^(==[0-9]+==\\s{1})(.*[rR]erun.*)$", "blue", ""],
+      ["^(==[0-9]+==\\s{1})(Use --.*)$", "blue", ""],
+      ["^(==[0-9]+==\\s{1}\\S+.*)$", "red", ""],
+      ["^==[0-9]+==\\s{2}(\\S+.*)$", "orange", ""],
+      ["^==[0-9]+==\\s{4}([atby]{2}) (0x0): (\\?{3})", "blue,yellow,red", "normal,normal,bold"],
+      ["^==[0-9]+==\\s{4}([atby]{2}) (0x)([^:]*:) (\\S+)", "blue,blue,blue,none", "normal"],
+      ["\\(in (.*)\\)", "cyan", "normal"],
+      ["\\(([^\\.]*\\.[^:]+):([0-9]+)\\)", "white,yellow", "bold,normal"],
+      ["^==[0-9]+==\\s{4}(definitely lost): .* (in) .*", "red", "bold"],
+      ["^==[0-9]+==\\s{4}(indirectly lost): .* (in) .*", "orange", "bold"],
+      ["^==[0-9]+==\\s{6}(possibly lost): .* (in) .*", "yellow", "bold"],
+      ["^==[0-9]+==\\s{4}(still reachable): .* (in) .*", "green", "bold"],
+      ["^==[0-9]+==\\s{9}(suppressed): .* (in) .*", "cyan", "bold"]
+    ]
+  },
+  "json": {
+    "config": [
+      ["[\\]}\"](,)", "yellow"],
+      ["\" (:) ", "yellow"],
+      ["[\\[\\]{}],*\\s*\n"],
+      ["\"(-*[0-9]+\\.*[0-9]*e*-*[0-9]*)\"", "blue"],
+      ["\"(.*)\"", "green"],
+      ["[\"']", "cyan"]
+    ]
+  },
+  "g++": {
+    "config": [
+      ["[/\\s]([cg]\\+\\+-*[0-9]*\\.*[0-9]*)", "white", "bold"],
+      ["\\s(\\-D)(\\s*[^\\s]+\\s)", "none,green", "normal,bold"],
+      ["\\s-g\\s", "green", "normal"],
+      ["\\s-O[0-4]*\\s", "green", "normal"],
+      ["\\s-[Wf][^\\s]*", "magenta", "normal"],
+      ["\\s(-I)(/*[^\\s]+/)([^/\\s]+)", "none,blue", "normal,normal,bold"],
+      ["\\s(-L)(/*[^\\s]+/)([^/\\s]+)", "none,cyan", "normal,normal,bold"],
+      ["\\s(-l)([^/\\s]+)", "none,cyan", "normal,bold"],
+      ["\\s-[oc]", "red", "bold"],
+      ["\\s(-+std)=*([^s]+)", "red", "normal,bold"],
+      ["error: ", "red", "bold"],
+      ["fatal error: ", "red", "bold"],
+      ["warning: ", "magenta", "bold"],
+      ["undefined reference to ", "red", "bold"],
+      ["\\[-W.*\\]", "magenta"],
+      ["(/.*?)/([^/:]+): (In .*)[\u2018`]", "blue", "normal,normal,bold"],
+      ["(/.*?)/([^/:]+): (At .*)", "blue", "normal,normal,bold"],
+      ["In file included from", "blue"],
+      ["(/.*?)/([^/:]+):([0-9]+):*([0-9]*)(.*)", "none,white,yellow,none,none", "normal,normal,normal,normal"],
+      ["[\u2018`](.*?)[\u2019']", "Cpp", "monokai"],
+      ["note: ((?!.*([\u2018`]|[\u2019'])).*)$", "Cpp", "monokai"],
+      ["note: ", "green", "normal"]
+    ]
+  },
+  "cmake": {
+    "context": {
+      "colormaps": {
+        "Scale": [45, 39, 33, 27, 21, 57, 63, 62, 98, 97, 133, 132, 138, 173, 172, 208, 214, 220, 226, 228, 229, 230, 231, 255]
+      }
+    },
+    "config": [
+      ["^--.*works", "green"],
+      ["^--.*done", "green"],
+      ["^-- Found.*NO", "red"],
+      ["^-- Found.*", "green"],
+      ["^--.*broken", "red"],
+      ["^-- Coult NOT find.*", "red"],
+      ["^-- Configuring incomplete, errors occurred!", "red"],
+      ["^--.*", "cyan"],
+      ["CMake Error:", "red"],
+      ["CMake Warning", "yellow"],
+      ["^(Scanning dependencies of target)(.*)$", "cyan", "normal,bold"],
+      ["^(Linking .* )(library|executable) (.*/)*(.+(\\.[aso]+)*)$", "blue", "normal,normal,bold"],
+      ["^\\[\\s*[0-9/]+%?\\]\\s(.*Creating.*)$", "cyan", "normal"],
+      ["^\\[\\s*[0-9/]+%?\\]\\s(Built target)(\\s.*)$", "green", "normal,bold"],
+      ["^\\[\\s*[0-9/]+%?\\]\\s(Building \\w* object)\\s+(.*)(\\.dir)(.*/)([-\\w]+).c.*.o$", "cyan,cyan,cyan,Hash,cyan", "normal,normal,normal,normal,bold"],
+      ["^\\[\\s*[0-9/]+%?\\]\\s(Generating)(\\s+.*)$", "cyan", "normal,bold"],
+      ["make\\[[0-9]+\\].*", "yellow"],
+      ["(make: \\*\\*\\* \\[.+\\] )(.* [0-9]+)", "red", "normal,bold"],
+      ["^(\\[\\s*[0-9]+%\\])", "Scale"]
+    ]
+  },
+  "javac": {
+    "config": [
+      ["^(.*\\.java):([0-9]+):\\s*(warning:.*)$", "white,yellow,magenta", "normal,normal,bold"],
+      ["^(.*\\.java):([0-9]+):(.*)$", "white,yellow,red", "normal,normal,bold"],
+      ["^(symbol|location)\\s*:\\s*(.*)$", "blue,Java", "bold,monokai"],
+      ["^(found)\\s*:\\s*(.*)", "red,Java", "bold,monokai"],
+      ["^(required)\\s*:\\s*(.*)", "green,Java", "bold,monokai"],
+      ["^\\s*\\^$", "cyan", "bold"],
+      ["^\\s+.*$", "Java", "monokai"],
+      ["[0-9]+ error[s]*", "red", "bold"],
+      ["[0-9]+ warning[s]*", "magenta", "bold"]
+    ]
+  },
+  "configure": {
+    "config": [
+      ["^(checking .*)(yes|found|ok)$", "green", "normal,bold"],
+      ["^(checking .*)(no|none)$", "yellow", "normal,bold"],
+      ["^(configure:) (error:)(.*)", "red", "normal,bold"],
+      ["^(configure:)(.*)", "magenta", "normal,bold"],
+      ["^(checking .*)", "blue", ""],
+      ["^(config.status:) (creating )(.*)", "cyan,blue", "normal,normal,bold"],
+      ["^(config.status:) (executing )(.*)", "cyan,green", "normal,normal,bold"]
+    ]
+  }
+}
