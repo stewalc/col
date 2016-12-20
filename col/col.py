@@ -62,7 +62,7 @@ class ColorStream(SingletonBase):
         super().__init__(*args, **kwargs)
         self._in_queue = Queue()
         self._out_queue = Queue()
-        self._colorizers=[ColorizerFactory.get_colorizer(**clexer._asdict(), html_output=self.html_output) for clexer in self.clexers]
+        self._colorizers=[ColorizerFactory.get_colorizer(html_output=self.html_output, **clexer._asdict()) for clexer in self.clexers]
         self.clex=self.build_wrapper()
         if self.stream: self._handle_stream()
 
