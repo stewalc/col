@@ -9,9 +9,10 @@ import imp
 import functools
 have_pygments=False
 try:
+    # from . import pygments
     imp.load_module('pygments', None, '{}/pygments/'.format(os.path.abspath(os.path.dirname(__file__))), ('','',5))
     have_pygments=True
-except ImportError:
+except (ImportError, AttributeError):
     try:
         import pygments
         have_pygments=True
@@ -62,7 +63,7 @@ class ColorStream(SingletonBase):
         super().__init__(*args, **kwargs)
         self._in_queue = Queue()
         self._out_queue = Queue()
-        self._colorizers=[ColorizerFactory.get_colorizer(html_output=self.html_output, **clexer._asdict()) for clexer in self.clexers]
+        self._colorizers=[ColorizerFactory.get_colorizer(**clexer._asdict(), html_output=self.html_output) for clexer in self.clexers]
         self.clex=self.build_wrapper()
         if self.stream: self._handle_stream()
 
@@ -163,29 +164,31 @@ class ColorizerFactory(SingletonBase):
         tmp_col=Colorizer(pattern=pattern, color=color, style=style)
         if color in tmp_col.colors.keys() or color.replace(',','').replace(' ','').isdigit(): return tmp_col
         else:
-            formatter=pygments.formatters.Terminal256Formatter(style='monokai')
             #if have_pygments: return functools.partial(pygments.highlight, lexer=CustomLexer(), formatter=pygments.formatters.Terminal256Formatter(style='monokai'))
-            if html_output:
-                formatter=pygments.formatters.HtmlFormatter(style='monokai')
-            if have_pygments: return functools.partial(pygments.highlight, lexer=pygments.lexers.get_lexer_by_name(color), formatter=formatter)
-            else: raise Exception('Nothing found for color: {}'.format(color))
+            if have_pygments:
+                formatter=pygments.formatters.Terminal256Formatter(style='monokai')
+                if html_output:
+                    formatter=pygments.formatters.HtmlFormatter(style='monokai')
+                return functools.partial(pygments.highlight, lexer=pygments.lexers.get_lexer_by_name(color), formatter=formatter)
+            else:
+                raise Exception('Nothing found for color: {}'.format(color))
 
-class CustomLexer(pygments.lexer.RegexLexer):
-    name = 'custom'
-    aliases = ['custom']
-    filenames = ['*.*']
-    tokens = {
-        'root': [
-            (r'.*EntityType.*\n', Generic.Inserted),
-            (r' .*\n', Text),
-            (r'\+.*\n', Generic.Inserted),
-            (r'-.*\n', Generic.Deleted),
-            (r'@.*\n', Generic.Subheading),
-            (r'Index.*\n', Generic.Heading),
-            (r'=.*\n', Generic.Heading),
-            (r'.*\n', Text),
-        ]
-    }
+# class CustomLexer(pygments.lexer.RegexLexer):
+#     name = 'custom'
+#     aliases = ['custom']
+#     filenames = ['*.*']
+#     tokens = {
+#         'root': [
+#             (r'.*EntityType.*\n', Generic.Inserted),
+#             (r' .*\n', Text),
+#             (r'\+.*\n', Generic.Inserted),
+#             (r'-.*\n', Generic.Deleted),
+#             (r'@.*\n', Generic.Subheading),
+#             (r'Index.*\n', Generic.Heading),
+#             (r'=.*\n', Generic.Heading),
+#             (r'.*\n', Text),
+#         ]
+#     }
 
 class ColHandler(SingletonBase):
     def __init__(self, *args, **kwargs):
